@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;/* Útil para garantir que a largura e a altura dos elementos incluam o padding e a borda */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #054f77;
+    position: relative;
+
+    color: white;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: white 2px solid; */
+
+    height: 7.5vh;
+    width: 100%;
+
+    background-color: #15202b;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.img-logo {
+    width: 6vh;
+    height: auto;
+}
+
+#content {
+    margin: 0 auto;
+    margin-top: 30px;
+    padding-bottom: 15px;
+
+    width: 60vw;
+}
+
+#content form {
+    background-color: #15202b;
+    display: grid;
+    /* border: 2px white solid; */
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 10px;
+}
+
+.inputTweet {
+    width: 100%;
+    padding-right: 5px;
+
+
+    min-height: 7vh;
+    max-height: 25vh;
+    box-sizing: border-box;
+    resize: none;
+
+    background-color: #15202b;
+    color: white;
+
+    font-size: 175%;
+
+    border: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+    outline: none;
+}
+
+#tweetar {
+    background-color: #1d9bf0;
+    color: white;
+    font-weight: bold;
+    font-size: 100%;
+
+    margin-right: 10px;
+
+    width: 20%;
+    height: 4vh;
+    border: none;
+    box-shadow: none;
+    border-radius: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-top: 3px;
+    justify-self: end;
+}
+
+.tweet {
+    background-color: #15202b;
+    border: 1px solid #253341;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+
+    font-size: 100%;
+}

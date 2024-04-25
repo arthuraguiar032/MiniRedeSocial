@@ -45,6 +45,36 @@ function deletaPost(index){
     miniRedeSocial.posts = listaPostsAtualizada;
 }
 
-criaPost({owner: 'aguiarthur', content: 'Segundo tweet!'});
-console.log(pegaPosts());
-updateContentPost(2, 'Segundo tweet atualizado!');
+
+
+//Funções para autoresize da textarea
+function addAutoResize() {
+    document.querySelectorAll('[data-autoresize]').forEach(function (element) {
+      element.style.boxSizing = 'border-box';
+      var offset = element.offsetHeight - element.clientHeight;
+      element.addEventListener('input', function (event) {
+        event.target.style.height = 'auto';
+        event.target.style.height = event.target.scrollHeight + offset + 'px';
+      });
+      element.removeAttribute('data-autoresize');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    addAutoResize();
+});
+
+function carregarNovasTextareas() {
+    // Suponha que você carregou novas textareas aqui, por exemplo:
+    var novasTextareas = document.createElement('textarea');
+    novasTextareas.className = 'autoresize';
+    document.body.appendChild(novasTextareas);
+
+    // Chame addAutoResize() novamente para aplicar redimensionamento automático a novas textareas
+    addAutoResize();
+}
+
+//http://opensource.locaweb.com.br/locawebstyle/documentacao/formularios/textarea/
+
+//https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Box_alignment_in_grid_layout
+
