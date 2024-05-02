@@ -15,20 +15,25 @@
 
         <div id="content">
             <form>
-                <textarea data-autoresize class='inputTweet' maxlength="280" placeholder="O que está acontecendo?"></textarea>
+                <textarea data-autoresize class='inputTweet' name='campoTweet' maxlength="280" placeholder="O que está acontecendo?"></textarea>
                 <button type="submit" id="tweetar">Tweet</button>
             </form>                
             <main>
                 <h2>Últimos Tweets</h2>
-                <div class="tweet" id="texto">
-                    <p>16p: orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida libero ac erat sollicitudin, sit amet tincidunt elit lacinia. Curabitur eu lacinia quam. #LoremIpsum</p>
-                </div>
-                <div class="tweet">
-                    <p>teste: oLrem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida libero ac erat sollicitudin, sit amet tincidunt elit lacinia. Curabitur eu lacinia quam. #LoremIpsum</p>
-                </div>
+                <ul class="listaTweets">
+                    <li class="tweet">
+                        <p>16p: orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida libero ac erat sollicitudin, sit amet tincidunt elit lacinia. Curabitur eu lacinia quam. #LoremIpsum</p>
+                    </li>
+                    <li class="tweet">
+                        <p>teste: oLrem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida libero ac erat sollicitudin, sit amet tincidunt elit lacinia. Curabitur eu lacinia quam. #LoremIpsum</p>
+                    </li>
+                </ul>
             </main>
         </div>
 
-        <footer></footer>
+        <footer>
+            <p>&copy; 2024 - Todos os direitos reservados</p>
+            <p>Feito por: <a href="github.com/arthuraguiar032">Arthur Aguiar</a></a></p>
+        </footer>
       </body>
 </html>
