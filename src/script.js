@@ -1,3 +1,69 @@
+// CRUD com  js BÁSICO
+let miniRedeSocial = {
+    usuarios: [
+        {
+            username: 'aguiarthur',
+        }
+    ],
+    posts: [
+        {
+            id: Date.now(),
+            owner: 'aguiarthur',
+            content: 'Hello World!'
+        }
+    ],
+    //READ
+    pegaPosts(){
+        miniRedeSocial.posts.forEach(({id, content, owner})=> {
+            this.criaPost({id, content, owner}, true);
+        });
+    },
+
+    //CREATE
+    criaPost(dados, htmlOnly = false){
+        const idInternoAqui = Date.now();
+
+        //Cria post na memoria
+        if(!htmlOnly){
+            miniRedeSocial.posts.push({
+                id: dados.id || idInternoAqui,
+                owner: dados.owner,
+                content: dados.content
+            });
+        }
+        
+        //Cria post no HTML
+        const $listaTweets = document.querySelector('.listaTweets');
+        $listaTweets.insertAdjacentHTML('afterbegin', `
+            <li class="tweet" data-id=${idInternoAqui}>
+                <button class="btn-delete">Deletar</button>
+                <span contenteditable>
+                    ${dados.content}
+                </span>
+            </li>
+        `);
+    },
+
+    //DELETE
+    apagaPost(index){
+        let listaPostsAtualizada = miniRedeSocial.posts.filter((postAtual) => {
+            return postAtual.id !== Number(index);
+        });
+        miniRedeSocial.posts = listaPostsAtualizada;
+    },
+
+    updateContentPost(index, newContent){
+        let postQueVaiSerAtualizado = miniRedeSocial.posts.find((post) => 
+            post.id === Number(index));
+        
+        postQueVaiSerAtualizado.content = newContent;
+    }
+}
+
+//READ
+miniRedeSocial.pegaPosts();
+
+//CREATE
 const $meuForm = document.querySelector('form');
 $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
     infosDoEvento.preventDefault();
@@ -14,63 +80,31 @@ $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
 });
 
 
-// CRUD com  js BÁSICO
-let miniRedeSocial = {
-    usuarios: [
-        {
-            username: 'aguiarthur',
-        }
-    ],
-    posts: [
-        {
-            id: 1,
-            owner: 'aguiarthur',
-            content: 'Hello World!'
-        }
-    ],
-    //READ
-    pegaPosts(){
-        miniRedeSocial.posts.forEach(({content, owner})=> {
-            this.criaPost({content, owner}, true);
-        });
-    },
+//DELETE
+let $listaTweets = document.querySelector('.listaTweets')
+$listaTweets.addEventListener('click', function (infosDoEvento) {
+    console.log('Houve um click!', infosDoEvento.target)
+    const elementoClicado = infosDoEvento.target;
+    const isBtnDeleteClick = infosDoEvento.target.classList.contains('btn-delete');
 
-    //CREATE
-    criaPost(dados, htmlOnly = false){
-        //Cria post na memoria
-        if(!htmlOnly){
-            miniRedeSocial.posts.push({
-                id: miniRedeSocial.posts.length + 1,
-                owner: dados.owner,
-                content: dados.content
-            });
-        }
+    if(isBtnDeleteClick){
+        console.log('Botão de deletar clicado',elementoClicado.parentNode.getAttribute('data-id'));
         
-        //Cria post no HTML
-        const $listaTweets = document.querySelector('.listaTweets');
-        $listaTweets.insertAdjacentHTML('afterbegin', `<li class="tweet">${dados.content}</li>`);
+        const idTweet = elementoClicado.parentNode.getAttribute('data-id');
+        //remove na memoria
+        miniRedeSocial.apagaPost(idTweet)
+        //remove na tela
+        elementoClicado.parentNode.remove();
     }
-}
+});
 
 //UPDATE
-function updateContentPost(index, newContent){
-    let postQueVaiSerAtualizado = pegaPosts().find((post) => 
-        post.id === index);
-    
-    postQueVaiSerAtualizado.content = newContent;
-}
+document.querySelector('.listaTweets').addEventListener('input', function(infosDoEvento){
+    const elementoAtual = infosDoEvento.target;
+    const id = elementoAtual.parentNode.getAttribute('data-id');
 
-//DELETE
-function deletaPost(index){
-    let listaPostsAtualizada = pegaPosts().filter((postAtual) => {
-        return postAtual.id !== index;
-    });
-    miniRedeSocial.posts = listaPostsAtualizada;
-}
-
-miniRedeSocial.pegaPosts();
-
-
+    miniRedeSocial.updateContentPost(id, elementoAtual.innerText);
+});
 
 //Funções para autoresize da textarea
 function addAutoResize() {
