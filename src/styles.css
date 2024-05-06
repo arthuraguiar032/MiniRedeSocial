@@ -114,6 +114,25 @@ header{
     list-style: none;
 }
 
+.btn-delete {
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 0;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    float: right;
+    align-items: center;
+
+    background-color: #1d9bf0;
+}
+
+.btn-delete img {
+    width: 50%;
+    height: auto;
+}
+
 footer {
     text-align: center;
     /* border: white 2px solid; */

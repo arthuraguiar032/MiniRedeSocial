@@ -36,7 +36,9 @@ let miniRedeSocial = {
         const $listaTweets = document.querySelector('.listaTweets');
         $listaTweets.insertAdjacentHTML('afterbegin', `
             <li class="tweet" data-id=${idInternoAqui}>
-                <button class="btn-delete">Deletar</button>
+                <button class="btn-delete" alt='Deletar'>
+                    <img src="../assets/trash.png"/>
+                </button>
                 <span contenteditable>
                     ${dados.content}
                 </span>
