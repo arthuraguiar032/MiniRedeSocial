@@ -1,3 +1,19 @@
+const $meuForm = document.querySelector('form');
+$meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
+    infosDoEvento.preventDefault();
+    console.log('Formulário enviado');
+
+    const $campoTweet = document.querySelector('textarea[name="campoTweet"]');
+    
+    miniRedeSocial.criaPost({
+        owner: 'aguiarthur',
+        content: $campoTweet.value
+    });
+
+    $campoTweet.value = '';
+});
+
+
 // CRUD com  js BÁSICO
 let miniRedeSocial = {
     usuarios: [
@@ -11,22 +27,29 @@ let miniRedeSocial = {
             owner: 'aguiarthur',
             content: 'Hello World!'
         }
-    ]
-}
+    ],
+    //READ
+    pegaPosts(){
+        miniRedeSocial.posts.forEach(({content, owner})=> {
+            this.criaPost({content, owner}, true);
+        });
+    },
 
-//CREATE
-function criaPost(dados){
-    miniRedeSocial.posts.push({
-        id: miniRedeSocial.posts.length + 1,
-        owner: dados.owner,
-        content: dados.content
-    });
-}
-
-
-//READ
-function pegaPosts(){
-    return miniRedeSocial.posts;
+    //CREATE
+    criaPost(dados, htmlOnly = false){
+        //Cria post na memoria
+        if(!htmlOnly){
+            miniRedeSocial.posts.push({
+                id: miniRedeSocial.posts.length + 1,
+                owner: dados.owner,
+                content: dados.content
+            });
+        }
+        
+        //Cria post no HTML
+        const $listaTweets = document.querySelector('.listaTweets');
+        $listaTweets.insertAdjacentHTML('afterbegin', `<li class="tweet">${dados.content}</li>`);
+    }
 }
 
 //UPDATE
@@ -44,6 +67,8 @@ function deletaPost(index){
     });
     miniRedeSocial.posts = listaPostsAtualizada;
 }
+
+miniRedeSocial.pegaPosts();
 
 
 
