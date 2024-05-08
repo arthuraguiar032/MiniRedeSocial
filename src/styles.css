@@ -117,8 +117,8 @@ header{
 .btn-delete {
     border: none;
     margin-bottom: 10px;
-    margin-top: 0;
-
+    margin-top: -10px;
+    /* margintop -10px e marginbottom 10px centralizam o botão */
     width: 30px;
     height: 30px;
     border-radius: 50%;

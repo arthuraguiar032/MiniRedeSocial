@@ -34,16 +34,21 @@ let miniRedeSocial = {
         
         //Cria post no HTML
         const $listaTweets = document.querySelector('.listaTweets');
-        $listaTweets.insertAdjacentHTML('afterbegin', `
-            <li class="tweet" data-id=${idInternoAqui}>
-                <button class="btn-delete" alt='Deletar'>
-                    <img src="../assets/trash.png"/>
-                </button>
-                <span contenteditable>
-                    ${dados.content}
-                </span>
-            </li>
-        `);
+        if (dados.content.trim() !== '') {
+            /**
+             * 1. O post só é criado se o conteúdo não for vazio
+             */
+            $listaTweets.insertAdjacentHTML('afterbegin', `
+                <li class="tweet" data-id=${idInternoAqui}>
+                    <button class="btn-delete" alt='Deletar'>
+                        <img src="../assets/trash.png"/>
+                    </button>
+                    <span contenteditable>
+                        ${dados.content}
+                    </span>
+                </li>
+            `);
+        }
     },
 
     //DELETE
