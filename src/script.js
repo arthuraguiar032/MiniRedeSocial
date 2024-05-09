@@ -151,14 +151,13 @@ function exibeTendencias(){
     let listaTrendHTML = '';
 
     if(palavrasOrdenadas.length !== 0){
-        palavrasOrdenadas.forEach((palavra, quantidade) => {
+        for(let i =0; i<palavrasOrdenadas.length && i<10; i++){
             listaTrendHTML += `
                 <li class="tendencia">
-                    <span>${palavra[0]}</span>
-                    <span>${palavra[1]}</span>
+                    <span>${i+1}. ${palavrasOrdenadas[i][0]}</span>
                 </li>
                 `
-        });    
+        }   
     }
 
     $listaTendencias.innerHTML = listaTrendHTML;

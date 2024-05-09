@@ -156,17 +156,13 @@ footer a:hover{
     color: #708090;
 }
 
-.tendenciasHoje {
-    padding: 10px;
-    color: #fff;
-    font-size: 100%;
-    list-style: none;
-    margin-top: -11.5vh;
-}
-
 .barralateral {
+    /* border: solid red 2px; */
+    background-color: #15202b;
+    border: 1px #708090 solid;
+
     position: fixed;
-    right: 0;
+    right: 20px;
     top: 0;
     width: 20vw;
     /* height: 100vh; */
@@ -174,9 +170,23 @@ footer a:hover{
     color: #fff;
     font-size: 100%;
     list-style: none;
-    margin-top: 20vh;
+    margin-top: 36vh;
+}
+
+.barralateral hr{
+    color: white;
+}
+
+.tendenciasHoje {
+    padding: 10px;
+    color: #fff;
+    font-size: 100%;
+    list-style: none;
+    /* margin-top: -11.5vh; */
 }
 
 .listaTendencias {
     list-style: none;
+    margin-left: 5%;
+    margin-top: 5%;
 }
