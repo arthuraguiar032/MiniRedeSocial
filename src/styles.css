@@ -102,6 +102,7 @@ header{
     margin-bottom: 1vh;
 }
 
+
 .tweet {
     background-color: #15202b;
     border: 1px #708090 solid;
@@ -117,7 +118,7 @@ header{
 .btn-delete {
     border: none;
     margin-bottom: 10px;
-    margin-top: -10px;
+    margin-top: -13px;
     /* margintop -10px e marginbottom 10px centralizam o botão */
     width: 30px;
     height: 30px;
@@ -153,4 +154,58 @@ footer a:link, footer a:visited, footer a:hover{
 
 footer a:hover{
     color: #708090;
+}
+
+#tendenciasHoje {
+    padding: 10px;
+    color: #fff;
+    font-size: 100%;
+    list-style: none;
+    margin-top: -11.5vh;
+}
+
+#assuntosMaisComentados {
+    padding: 10px;
+    color: #fff;
+    font-size: 100%;
+    list-style: none;
+    margin-top: 20px;
+}
+
+#assuntosMaisComentados table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#assuntosMaisComentados th {
+    background-color: #1d9bf0;
+    padding: 10px;
+    text-align: left;
+}
+
+#assuntosMaisComentados td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+#assuntosMaisComentados .tendenciasHoje {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#assuntosMaisComentados .tendenciasHoje:hover {
+    color: #1d9bf0;
+}
+
+.barralateral {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20vw;
+    /* height: 100vh; */
+    padding: 10px;
+    color: #fff;
+    font-size: 100%;
+    list-style: none;
+    margin-top: 20vh;
 }
