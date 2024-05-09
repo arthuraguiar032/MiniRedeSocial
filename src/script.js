@@ -9,7 +9,7 @@ let miniRedeSocial = {
         {
             id: Date.now(),
             owner: 'aguiarthur',
-            content: 'Hello World!'
+            content: 'Hello World! Hello'
         }
     ],
     //READ
@@ -105,6 +105,9 @@ $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
     });
 
     $campoTweet.value = '';
+
+    //atualiza tendencias a cada novo tweet
+    exibeTendencias();
 });
 
 
@@ -134,6 +137,35 @@ document.querySelector('.listaTweets').addEventListener('input', function(infosD
     miniRedeSocial.updateContentPost(id, elementoAtual.innerText);
 });
 
+
+//TrendTopics
+function exibeTendencias(){
+    const $listaTendencias = document.querySelector('.listaTendencias');
+    const palavras = miniRedeSocial.contarPalavras();
+    console.log(palavras);
+
+    //ordenar as palavras de acordo com a quantidade
+    const palavrasOrdenadas = Object.entries(palavras).sort((a, b) => b[1] - a[1]);
+    console.log(palavrasOrdenadas);
+    
+    let listaTrendHTML = '';
+
+    if(palavrasOrdenadas.length !== 0){
+        palavrasOrdenadas.forEach((palavra, quantidade) => {
+            listaTrendHTML += `
+                <li class="tendencia">
+                    <span>${palavra[0]}</span>
+                    <span>${palavra[1]}</span>
+                </li>
+                `
+        });    
+    }
+
+    $listaTendencias.innerHTML = listaTrendHTML;
+}
+exibeTendencias();
+
+
 //Funções para autoresize da textarea
 function addAutoResize() {
     document.querySelectorAll('[data-autoresize]').forEach(function (element) {
@@ -160,70 +192,6 @@ function carregarNovasTextareas() {
     // Chame addAutoResize() novamente para aplicar redimensionamento automático a novas textareas
     addAutoResize();
 }
-
-function exibirTendencias() {
-    const tendencias = miniRedeSocial.contarPalavras();
-    const $assuntosMaisComentados = document.getElementById('assuntosMaisComentados').getElementsByTagName('tbody')[0];
-
-    // Limpa a lista de tendências antes de adicionar as novas
-    $assuntosMaisComentados.innerHTML = '';
-
-    // Ordena as palavras por número de ocorrências
-    const tendenciasOrdenadas = Object.entries(tendencias).sort((a, b) => b[1] - a[1]);
-
-    // Adiciona este console.log para verificar as tendências
-    console.log(tendenciasOrdenadas);
-
-    // Limita o número de tendências a serem exibidas (por exemplo, as 10 principais)
-    const limiteTendencias = 10;
-    for (let i = 0; i < Math.min(limiteTendencias, tendenciasOrdenadas.length); i++) {
-        const [palavra, ocorrencias] = tendenciasOrdenadas[i];
-        const linhaTabela = `<tr><td class="tendencia">${palavra} (${ocorrencias} vezes)</td></tr>`;
-        $assuntosMaisComentados.insertAdjacentHTML('beforeend', linhaTabela);
-    }
-}
-
-// document.getElementById('assuntosMaisComentados').addEventListener('click', function(event) {
-//     if (event.target.classList.contains('tendencia')) {
-//         const palavra = event.target.textContent.split(' ')[0]; // Extrai a palavra da tendência clicada
-//         const $listaTweets = document.querySelector('.listaTweets');
-
-//         // Filtra os posts que contêm a palavra clicada
-//         const postsFiltrados = miniRedeSocial.posts.filter(post => {
-//             return post.content.toLowerCase().includes(palavra);
-//         });
-
-//         // Limpa a lista de tweets antes de adicionar os relacionados à tendência clicada
-//         $listaTweets.innerHTML = '';
-
-//         // Adiciona os posts relacionados à tendência clicada na lista de tweets
-//         postsFiltrados.forEach(post => {
-//             miniRedeSocial.criaPost(post, true);
-//         });
-//     }
-// });
-
-// document.getElementById('assuntosMaisComentados').addEventListener('click', function(event) {
-//     if (event.target.classList.contains('tendencia')) {
-//         const palavra = event.target.textContent.split(' ')[0]; // Extrai a palavra da tendência clicada
-//         const $listaTweets = document.querySelector('.listaTweets');
-
-//         // Filtra os posts que contêm a palavra clicada
-//         const postsFiltrados = miniRedeSocial.posts.filter(post => {
-//             return post.content.toLowerCase().includes(palavra);
-//         });
-
-//         // Limpa a lista de tweets antes de adicionar os relacionados à tendência clicada
-//         $listaTweets.innerHTML = '';
-        
-//         // Adiciona os posts relacionados à tendência clicada na lista de tweets
-//         postsFiltrados.forEach(post => {
-//             miniRedeSocial.criaPost(post, true);
-//         });
-//     }
-// });
-
-exibirTendencias();
 
 //http://opensource.locaweb.com.br/locawebstyle/documentacao/formularios/textarea/
 

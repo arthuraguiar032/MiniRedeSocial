@@ -156,45 +156,12 @@ footer a:hover{
     color: #708090;
 }
 
-#tendenciasHoje {
+.tendenciasHoje {
     padding: 10px;
     color: #fff;
     font-size: 100%;
     list-style: none;
     margin-top: -11.5vh;
-}
-
-#assuntosMaisComentados {
-    padding: 10px;
-    color: #fff;
-    font-size: 100%;
-    list-style: none;
-    margin-top: 20px;
-}
-
-#assuntosMaisComentados table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#assuntosMaisComentados th {
-    background-color: #1d9bf0;
-    padding: 10px;
-    text-align: left;
-}
-
-#assuntosMaisComentados td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-#assuntosMaisComentados .tendenciasHoje {
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-#assuntosMaisComentados .tendenciasHoje:hover {
-    color: #1d9bf0;
 }
 
 .barralateral {
@@ -208,4 +175,8 @@ footer a:hover{
     font-size: 100%;
     list-style: none;
     margin-top: 20vh;
+}
+
+.listaTendencias {
+    list-style: none;
 }
