@@ -3,6 +3,7 @@ let miniRedeSocial = {
     usuarios: [
         {
             username: 'aguiarthur',
+            color: gerarCorAleatoria()
         }
     ],
     posts: [
@@ -83,6 +84,29 @@ let miniRedeSocial = {
         
         postQueVaiSerAtualizado.content = newContent;
     },
+    
+    //Read Usuarios
+    pegaUsuarios() {
+        return this.usuarios.map(usuario => usuario.username);
+    },
+
+    //Verifica se usuario existe
+    existeUsuario(username) {
+        return this.pegaUsuarios().includes(username);
+    },
+    
+    //Adiciona Usuario
+    criaUsuario(username) {
+        if (!this.existeUsuario(username)) {
+            this.usuarios.push({
+                username,
+                color: gerarCorAleatoria()
+            });
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 
@@ -138,6 +162,8 @@ document.querySelector('.listaTweets').addEventListener('input', function(infosD
 });
 
 
+
+
 //TrendTopics
 function exibeTendencias(){
     const $listaTendencias = document.querySelector('.listaTendencias');
@@ -190,6 +216,29 @@ function carregarNovasTextareas() {
 
     // Chame addAutoResize() novamente para aplicar redimensionamento automático a novas textareas
     addAutoResize();
+}
+
+//Funcoes pra gerar cores para usuarios
+function gerarCorAleatoria() {
+    let cor;
+    do {
+      cor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      // Completar com zeros se necessário
+      while (cor.length < 7) {
+        cor += '0';
+      }
+    } while (isCorClara(cor)); // Garante que a cor não seja muito clara
+    return cor;
+}
+  
+function isCorClara(cor) {
+    // Convertendo a cor hexadecimal para componentes RGB
+    const r = parseInt(cor.slice(1, 3), 16);
+    const g = parseInt(cor.slice(3, 5), 16);
+    const b = parseInt(cor.slice(5, 7), 16);
+    // Definindo um limite para considerar a cor "clara"
+    const limite = 200;
+    return r > limite && g > limite && b > limite;
 }
 
 //http://opensource.locaweb.com.br/locawebstyle/documentacao/formularios/textarea/
