@@ -17,7 +17,17 @@
             <form>
                 <textarea data-autoresize class='inputTweet' name='campoTweet' maxlength="280" placeholder="O que está acontecendo?"></textarea>
                 <button type="submit" id="tweetar">Tweet</button>
-            </form>                
+                <select name="" id="selecaoUsuario">
+                    <option value="0" disabled selected>Selecione um usuário</option>
+                </select>
+            </form>
+            <aside>
+                <h3>Novo Usuário</h3>
+                <form class="formUser">
+                    <input type="text" name="campoUsuario" placeholder="Nome de usuário">  
+                    <button type="submit" id="cadastrarUsuario" class="btnPadrao">Cadastrar</button>
+                </form>
+            </aside>                
             <main>
                 <h2>Últimos Tweets</h2>
                 <ul class="listaTweets">

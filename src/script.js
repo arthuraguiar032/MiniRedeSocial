@@ -122,9 +122,17 @@ $meuForm.addEventListener('submit', function criaPostController(infosDoEvento){
     console.log('Formulário enviado');
 
     const $campoTweet = document.querySelector('textarea[name="campoTweet"]');
+    const $campoUsuario = document.getElementById('selecaoUsuario');
+    usuarioSelecionadoValor = $campoUsuario.value;
+    if (usuarioSelecionadoValor === '0') {
+        alert('Selecione um usuário');
+        return;
+    } 
+    
+    usuarioSeleciondoText = $campoUsuario.options[$campoUsuario.selectedIndex].text;
     
     miniRedeSocial.criaPost({
-        owner: 'aguiarthur',
+        owner: usuarioSeleciondoText,
         content: $campoTweet.value
     });
 
@@ -160,8 +168,6 @@ document.querySelector('.listaTweets').addEventListener('input', function(infosD
 
     miniRedeSocial.updateContentPost(id, elementoAtual.innerText);
 });
-
-
 
 
 //TrendTopics
@@ -240,6 +246,42 @@ function isCorClara(cor) {
     const limite = 200;
     return r > limite && g > limite && b > limite;
 }
+
+//Cadastrar Usuario Controller
+const $formUser = document.querySelector('.formUser');
+$formUser.addEventListener('submit', function cadastraUsuarioController(infosDoEvento){
+    infosDoEvento.preventDefault();
+    const $campoUsuario = document.querySelector('input[name="campoUsuario"]');
+
+    if(!miniRedeSocial.criaUsuario($campoUsuario.value)){
+        alert('Usuário já existe');
+        return;
+    }
+
+    $campoUsuario.value = '';
+    alert('Usuário cadastrado com sucesso');
+    preencherDropDownUsuarios();
+});
+
+
+//Função  pra preencher dropdown usuarios
+function preencherDropDownUsuarios(){
+    const $dropdown = document.getElementById('selecaoUsuario')
+    $dropdown.innerHTML = `
+        <option value="0">Selecione um usuário</option>
+    `;
+    $dropdown.selectedIndex = 0;
+    
+    const usuarios = miniRedeSocial.pegaUsuarios();
+
+    usuarios.forEach(usuario => {
+        const $option = document.createElement('option');
+        $option.value = usuario;
+        $option.innerText = usuario;
+        $dropdown.appendChild($option);
+    });
+}
+preencherDropDownUsuarios();
 
 //http://opensource.locaweb.com.br/locawebstyle/documentacao/formularios/textarea/
 
