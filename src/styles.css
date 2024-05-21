@@ -108,8 +108,30 @@ header{
     padding-top: 5px;
     padding-bottom: 5px;
 
-    margin-top: 5px;
     justify-self: end;
+}
+
+#selecaoUsuario {
+    margin-top: 5px;
+    
+    width: 25%;
+    justify-self: start;
+
+    height: 75%;
+
+    background-color: #15202b;
+    border: gray 2px solid;
+    border-radius: 30px;
+    color: white;
+    padding-left: 10px;
+}
+
+.butoes{
+    /* border: solid 1px red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
 }
 
 #content main{
