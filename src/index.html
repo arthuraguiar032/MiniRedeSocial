@@ -15,7 +15,16 @@
 
         <div id="content">
             <div class="topo">    
-                <form>
+                <aside>
+                    
+                    <form class="formUser">
+                        <h3>Novo Usuário</h3>
+                        <input type="text" name="campoUsuario" placeholder="Nome de usuário">  
+                        <button type="submit" id="cadastrarUsuario" class="btnPadrao">Cadastrar</button>
+                    </form>
+                </aside>
+                
+                <form class="post">
                     <textarea data-autoresize class='inputTweet' name='campoTweet' maxlength="280" placeholder="O que está acontecendo?"></textarea>
                     <div class="butoes">
                         <select name="" id="selecaoUsuario">
@@ -25,13 +34,7 @@
                         <button type="submit" id="tweetar">Tweet</button>
                     </div>
                 </form>
-                <aside>
-                    <h3>Novo Usuário</h3>
-                    <form class="formUser">
-                        <input type="text" name="campoUsuario" placeholder="Nome de usuário">  
-                        <button type="submit" id="cadastrarUsuario" class="btnPadrao">Cadastrar</button>
-                    </form>
-                </aside>
+                
             </div>                
             <main>
                 <h2>Últimos Tweets</h2>
